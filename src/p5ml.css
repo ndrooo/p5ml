@@ -1,0 +1,14 @@
+p5-canvas {
+    display: none;
+    background-color: blue;
+}
+
+p5-rect {
+    color: red;
+    background-color: white;
+
+    &.alt {
+        color: white;
+        background-color: green;
+    }
+}
