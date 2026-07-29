@@ -3,6 +3,8 @@ import p5 from "p5";
 
 export default class Canvas extends P5MLElement {
   canvas: HTMLCanvasElement = document.createElement("canvas");
+  setup: (p: p5) => void | null = null;
+  update: (p: p5) => void | null = null;
 
   static {
     this.define();
@@ -19,8 +21,14 @@ export default class Canvas extends P5MLElement {
         Number(this.getAttribute("width")),
         Number(this.getAttribute("height")),
       );
+      if (this.setup != null) {
+        this.setup(p);
+      }
     };
     p.draw = () => {
+      if (this.update != null) {
+        this.update(p);
+      }
       p.background(getComputedStyle(this).getPropertyValue("background"));
       this.drawRecursive(p);
     };

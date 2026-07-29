@@ -2,8 +2,9 @@ import type p5 from "p5";
 import P5MLElement from "../element";
 
 export default class Translate extends P5MLElement {
-  x: number = Number(this.getAttribute("x"));
-  y: number = Number(this.getAttribute("y"));
+  x: number = Number(this.getAttribute("x") ?? 0);
+  y: number = Number(this.getAttribute("y") ?? 0);
+  static observedAttributes = ["x", "y"];
 
   static {
     this.define();
@@ -14,5 +15,10 @@ export default class Translate extends P5MLElement {
     p.translate(this.x, this.y);
     this.drawRecursive(p);
     p.pop();
+  }
+
+  attributeChangedCallback(name: string, oldValue, newValue) {
+    if (oldValue === newValue) return;
+    this[name] = newValue;
   }
 }
