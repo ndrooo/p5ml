@@ -18,7 +18,7 @@ export default class Translate extends P5MLElement {
   }
 
   attributeChangedCallback(name: string, oldValue, newValue) {
-    if (oldValue === newValue) return;
-    this[name] = newValue;
+    if (Number(oldValue) === Number(newValue)) return;
+    this[name] = Number(newValue);
   }
 }

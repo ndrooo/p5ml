@@ -1,6 +1,10 @@
 import Canvas from "./elements/canvas.ts";
 import type p5 from "p5";
 import type Translate from "./elements/translate.ts";
+import Alpine from "alpinejs";
+
+window["Alpine"] = Alpine;
+Alpine.start();
 
 const canvas: Canvas = document.getElementsByTagName("p5-canvas")[0] as Canvas;
 const framerate: Element = document.getElementById("framerate");
@@ -22,14 +26,15 @@ canvas.update = (p: p5) => {
   for (let i = 0; i < movers.length; i++) {
     var xNoise = p.noise(time + mover_offsets[i]) * p.width;
     var yNoise = p.noise(time + 200 + mover_offsets[i]) * p.height;
-    movers[i].setAttribute("x", xNoise.toString());
-    movers[i].setAttribute("y", yNoise.toString());
+    movers[i].setAttribute("x", xNoise.toPrecision(6));
+    movers[i].setAttribute("y", yNoise.toPrecision(6));
   }
   time += 0.01;
   framerateWindowIndex = (framerateWindowIndex + 1) % framerateWindow.length;
   framerateWindow[framerateWindowIndex] = p.frameRate();
   if (framerateWindowIndex === 0) {
-    let frAvg = framerateWindow.reduce((a, b) => a + b) / framerateWindow.length;
+    let frAvg =
+      framerateWindow.reduce((a, b) => a + b) / framerateWindow.length;
     framerate.textContent = frAvg.toPrecision(4);
   }
 };

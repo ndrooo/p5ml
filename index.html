@@ -6,31 +6,17 @@
         <link rel="stylesheet" href="src/p5ml.css" />
     </head>
     <body>
-        <p5-canvas width="400" height="400">
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
-            <p5-translate class="mover">
-                <p5-circle d="40"></p5-circle>
-            </p5-translate>
+        <p5-canvas width="600" height="600" x-data="{ count: 50 }">
+            <template x-for="i in count">
+                <div>
+                    <p5-translate class="mover">
+                        <p5-circle d="40"></p5-circle>
+                    </p5-translate>
+                    <p5-translate class="mover">
+                        <p5-circle class="alt" d="20"></p5-circle>
+                    </p5-translate>
+                </div>
+            </template>
         </p5-canvas>
         <p>Framerate: <span id="framerate">0</span></p>
         <script type="module" src="src/p5ml.ts"></script>
