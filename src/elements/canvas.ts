@@ -29,7 +29,7 @@ export default class Canvas extends P5MLElement {
       if (this.update != null) {
         this.update(p);
       }
-      p.background(getComputedStyle(this).getPropertyValue("background"));
+      p.background(getComputedStyle(this).background);
       this.drawRecursive(p);
     };
   }

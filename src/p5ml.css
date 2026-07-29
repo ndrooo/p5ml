@@ -1,14 +1,14 @@
 p5-canvas {
     display: none;
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 p5-circle {
     color: red;
-    background-color: white;
+    background: rgba(255, 0, 0, 0.5);
 
     &.alt {
-        color: white;
-        background-color: green;
+        color: green;
+        background-color: rgba(0, 0, 255, 0.5);
     }
 }

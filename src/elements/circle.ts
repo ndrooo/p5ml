@@ -10,7 +10,7 @@ export default class Circle extends P5MLElement {
 
   draw(p: p5) {
     p.stroke(getComputedStyle(this).getPropertyValue("color"));
-    p.fill(getComputedStyle(this).getPropertyValue("background-color"));
+    p.fill(getComputedStyle(this).getPropertyValue("background"));
     p.circle(0, 0, this.diameter);
   }
 }
