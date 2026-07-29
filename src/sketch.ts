@@ -3,11 +3,14 @@ import type p5 from "p5";
 import type Translate from "./elements/translate.ts";
 
 const canvas: Canvas = document.getElementsByTagName("p5-canvas")[0] as Canvas;
+const framerate: Element = document.getElementById("framerate");
 
 let time = 0;
 
 let movers: Translate[] = [];
 let mover_offsets: number[] = [];
+let framerateWindow: number[] = Array(10).fill(60);
+let framerateWindowIndex = 0;
 
 canvas.setup = (p: p5) => {
   movers = Array.from(document.getElementsByClassName("mover")) as Translate[];
@@ -23,4 +26,10 @@ canvas.update = (p: p5) => {
     movers[i].setAttribute("y", yNoise.toString());
   }
   time += 0.01;
+  framerateWindowIndex = (framerateWindowIndex + 1) % framerateWindow.length;
+  framerateWindow[framerateWindowIndex] = p.frameRate();
+  if (framerateWindowIndex === 0) {
+    let frAvg = framerateWindow.reduce((a, b) => a + b) / framerateWindow.length;
+    framerate.textContent = frAvg.toPrecision(4);
+  }
 };
