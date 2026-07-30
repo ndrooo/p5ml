@@ -19,6 +19,13 @@ body {
     }
 }
 
+.tools {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 button {
     border: 2px solid white;
     border-radius: 4px;

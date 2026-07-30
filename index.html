@@ -8,15 +8,13 @@
     <body>
         <article class="canvas-container" x-data="{ paused: true }">
             <h2>Particles!</h2>
-            <p>
-                <button
-                    x-on:click="paused = !paused"
-                >
+            <div class="tools">
+                <button x-on:click="paused = !paused">
                     <div x-show="paused" data-lucide="play"></div>
                     <div x-show="!paused" data-lucide="pause"></div>
                 </button>
-                FPS: <span id="framerate">0</span>
-            </p>
+                <span>FPS: <span id="framerate">0</span></span>
+            </div>
             <p5-canvas
                 width="600"
                 height="600"

@@ -37,6 +37,6 @@ canvas.update = (p: p5) => {
   if (framerateWindowIndex === 0) {
     let frAvg =
       framerateWindow.reduce((a, b) => a + b) / framerateWindow.length;
-    framerate.textContent = frAvg.toPrecision(4);
+    framerate.textContent = frAvg.toPrecision(2);
   }
 };
