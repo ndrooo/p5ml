@@ -1,7 +1,7 @@
 import type p5 from "p5";
-import P5MLElement from "../element";
+import Transform2dElement from "./transform2d";
 
-export default class Translate extends P5MLElement {
+export default class Translate extends Transform2dElement {
   x: number = Number(this.getAttribute("x") ?? 0);
   y: number = Number(this.getAttribute("y") ?? 0);
   static observedAttributes = ["x", "y"];
@@ -11,10 +11,7 @@ export default class Translate extends P5MLElement {
   }
 
   draw(p: p5): void {
-    p.push();
     p.translate(this.x, this.y);
-    this.drawRecursive(p);
-    p.pop();
   }
 
   attributeChangedCallback(name: string, oldValue, newValue) {
