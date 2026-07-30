@@ -1,5 +1,5 @@
 p5-canvas {
-    display: none;
+    display: contents;
     background-color: rgba(0, 0, 0, 0.5);
 }
 

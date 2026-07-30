@@ -2,7 +2,6 @@ import P5MLElement from "../element";
 import p5 from "p5";
 
 export default class Canvas extends P5MLElement {
-  canvas: HTMLCanvasElement = document.createElement("canvas");
   setup: (p: p5) => void | null = null;
   update: (p: p5) => void | null = null;
 
@@ -11,8 +10,7 @@ export default class Canvas extends P5MLElement {
   }
 
   connectedCallback() {
-    this.prepend(this.canvas);
-    new p5(this.sketch.bind(this));
+    new p5(this.sketch.bind(this), this);
   }
 
   sketch(p: p5) {
