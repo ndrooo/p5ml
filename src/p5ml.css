@@ -1,5 +1,36 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.canvas-container {
+    border: 2px solid white;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-x: hidden;
+
+    > :not(p5-canvas) {
+        margin: 0;
+        padding: 1rem;
+    }
+
+    > * + * {
+        border-block-start: 2px solid white;
+    }
+}
+
+button {
+    border: 2px solid white;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    padding: 4px;
+    > svg {
+        display: block;
+    }
+}
+
 p5-canvas {
-    display: contents;
     background-color: rgba(0, 0, 0, 0.5);
 }
 

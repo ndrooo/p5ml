@@ -6,19 +6,35 @@
         <link rel="stylesheet" href="src/p5ml.css" />
     </head>
     <body>
-        <p5-canvas width="600" height="600" x-data="{ count: 50 }">
-            <template x-for="i in count">
-                <div>
-                    <p5-translate class="mover">
-                        <p5-circle d="40"></p5-circle>
-                    </p5-translate>
-                    <p5-translate class="mover">
-                        <p5-circle class="alt" d="20"></p5-circle>
-                    </p5-translate>
-                </div>
-            </template>
-        </p5-canvas>
-        <p>Framerate: <span id="framerate">0</span></p>
+        <article class="canvas-container" x-data="{ paused: true }">
+            <h2>Particles!</h2>
+            <p>
+                <button
+                    x-on:click="paused = !paused"
+                >
+                    <div x-show="paused" data-lucide="play"></div>
+                    <div x-show="!paused" data-lucide="pause"></div>
+                </button>
+                FPS: <span id="framerate">0</span>
+            </p>
+            <p5-canvas
+                width="600"
+                height="600"
+                :paused="paused"
+                x-data="{ count: 50 }"
+            >
+                <template x-for="i in count">
+                    <div>
+                        <p5-translate class="mover">
+                            <p5-circle d="40"></p5-circle>
+                        </p5-translate>
+                        <p5-translate class="mover">
+                            <p5-circle class="alt" d="20"></p5-circle>
+                        </p5-translate>
+                    </div>
+                </template>
+            </p5-canvas>
+        </article>
         <script type="module" src="src/p5ml.ts"></script>
         <script type="module" src="src/sketch.ts"></script>
     </body>

@@ -2,9 +2,11 @@ import Canvas from "./elements/canvas.ts";
 import type p5 from "p5";
 import type Translate from "./elements/translate.ts";
 import Alpine from "alpinejs";
+import { createIcons, Pause, Play } from "lucide";
 
 window["Alpine"] = Alpine;
 Alpine.start();
+createIcons({ icons: { Pause, Play } });
 
 const canvas: Canvas = document.getElementsByTagName("p5-canvas")[0] as Canvas;
 const framerate: Element = document.getElementById("framerate");
