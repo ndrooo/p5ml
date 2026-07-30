@@ -1,7 +1,7 @@
-import P5MLElement from "../element";
+import Draw2dElement from "./draw2d";
 import p5 from "p5";
 
-export default class Circle extends P5MLElement {
+export default class Circle extends Draw2dElement {
   diameter: number = Number(this.getAttribute("d"));
 
   static {
@@ -9,8 +9,6 @@ export default class Circle extends P5MLElement {
   }
 
   draw(p: p5) {
-    p.stroke(getComputedStyle(this).getPropertyValue("color"));
-    p.fill(getComputedStyle(this).getPropertyValue("background"));
     p.circle(0, 0, this.diameter);
   }
 }
