@@ -22,6 +22,7 @@ export default class Canvas extends P5MLElement {
         Number(this.getAttribute("width")),
         Number(this.getAttribute("height")),
       );
+      p.angleMode(this.getAngleMode(p));
       p.background(getComputedStyle(this).background);
       if (this.setup != null) {
         this.setup(p);
@@ -41,6 +42,17 @@ export default class Canvas extends P5MLElement {
   attributeChangedCallback(name: string, _oldValue, newValue) {
     if (name === "paused") {
       this.paused = Boolean(newValue);
+    }
+  }
+
+  getAngleMode(p: p5): "degrees" | "radians" {
+    switch (this.getAttribute("angle-mode").toLowerCase()) {
+      case "deg":
+      case "degrees":
+      case "d":
+        return p.DEGREES;
+      default:
+        return p.RADIANS;
     }
   }
 }

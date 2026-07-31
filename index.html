@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="src/p5ml.css" />
     </head>
     <body>
-        <article class="canvas-container" x-data="{ paused: true }">
+        <article class="canvas-container" x-data="{ paused: true, angle: 0 }">
             <h2>Particles!</h2>
             <div class="tools">
                 <button x-on:click="paused = !paused">
@@ -15,22 +15,33 @@
                 </button>
                 <span>FPS: <span id="framerate">0</span></span>
             </div>
+            <button x-on:click="angle += 90">Rotate 90</button>
             <p5-canvas
                 width="600"
                 height="600"
+                angle-mode="degrees"
                 :paused="paused"
                 x-data="{ count: 50 }"
             >
-                <template x-for="i in count">
-                    <div>
-                        <p5-translate class="mover">
-                            <p5-circle d="40"></p5-circle>
+                <p5-translate x="300" y="300">
+                    <p5-rotate :angle="angle">
+                        <p5-translate x="-300" y="-300">
+                            <template x-for="i in count">
+                                <div>
+                                    <p5-translate class="mover">
+                                        <p5-circle d="40"></p5-circle>
+                                    </p5-translate>
+                                    <p5-translate class="mover">
+                                        <p5-circle
+                                            class="alt"
+                                            d="20"
+                                        ></p5-circle>
+                                    </p5-translate>
+                                </div>
+                            </template>
                         </p5-translate>
-                        <p5-translate class="mover">
-                            <p5-circle class="alt" d="20"></p5-circle>
-                        </p5-translate>
-                    </div>
-                </template>
+                    </p5-rotate>
+                </p5-translate>
             </p5-canvas>
         </article>
         <script type="module" src="src/p5ml.ts"></script>
