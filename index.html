@@ -21,6 +21,25 @@
         </style>
     </head>
     <body>
+        <h1>&lt;p5ml&gt;</h1>
+        <p>
+            p5ml is a wrapper around <a href="https://p5js.org">p5.js</a> which
+            allows you to write
+            <a href="https://processing.org/">Processing</a> sketches
+            semi-declaratively using HTML, CSS, and less Javascript than usual.
+        </p>
+        <p>
+            Feel free to play with it in this environment! Make a duplicate of
+            <code>/sketches/template.html</code> and customize using the
+            elements in <code>/src/elements</code> - you can also add custom
+            elements in <code>/custom</code> if you'd like. This environment is
+            also set up with <a href="https://alpinejs.dev/">AlpineJS</a> for
+            quick loops and logic.
+        </p>
+        <p>Add your sketch to the list:</p>
+        <ul>
+            <li><a href="/sketches/template.html">Template</a></li>
+        </ul>
         <article class="canvas-container" x-data="{ paused: true }" :id="$id">
             <h2>Particles!</h2>
             <div class="tools">
