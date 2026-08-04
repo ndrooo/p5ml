@@ -32,8 +32,15 @@
                 :paused="paused"
             >
                 <p5-translate x="200" y="200">
-                    <spin-thing speed="1">
+                    <spin-thing speed="1" class="noisy">
                         <p5-ellipse w="30" h="200"></p5-ellipse>
+                    </spin-thing>
+                </p5-translate>
+                <p5-translate x="350" y="350">
+                    <spin-thing speed="1">
+                        <p5-translate x="-150" y="-100">
+                            <p5-image src="/static/rc.svg"></p5-image>
+                        </p5-translate>
                     </spin-thing>
                 </p5-translate>
             </p5-canvas>
@@ -47,7 +54,7 @@
             let time = 0;
 
             canvas.update.push((p) => {
-                Array.from(canvas.getElementsByTagName("spin-thing")).forEach(
+                Array.from(canvas.getElementsByClassName("noisy")).forEach(
                     (element) => {
                         element.speed = (p.noise(time) - 0.5) * 8;
                         time += 0.1;

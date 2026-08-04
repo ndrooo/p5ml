@@ -10,7 +10,7 @@ export default class Translate extends Transform2dElement {
     this.define();
   }
 
-  draw(p: p5): void {
+  draw(p: p5) {
     p.translate(this.x, this.y);
   }
 

@@ -9,7 +9,7 @@ export default class Rotate extends Transform2dElement {
     this.define();
   }
 
-  draw(p: p5): void {
+  draw(p: p5) {
     p.rotate(this.angle);
   }
 

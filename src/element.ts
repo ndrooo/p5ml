@@ -17,9 +17,13 @@ export default class P5MLElement extends HTMLElement {
     Array.from(target.children).forEach((child: Element) => {
       if (P5MLElement.isP5(child)) {
         const p5child = child as P5MLElement;
-        p5child.preDraw(p);
+        if (p5child.preDraw) {
+          p5child.preDraw(p);
+        }
         p5child.draw(p);
-        p5child.postDraw(p);
+        if (p5child.postDraw) {
+          p5child.postDraw(p);
+        }
       } else {
         this.drawRecursive(p, child);
       }
