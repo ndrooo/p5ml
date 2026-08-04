@@ -2,8 +2,8 @@ import P5MLElement from "../element";
 import p5 from "p5";
 
 export default class Canvas extends P5MLElement {
-  setup: (p: p5) => void | null = null;
-  update: (p: p5) => void | null = null;
+  setup: ((p: p5) => void)[] = [];
+  update: ((p: p5) => void)[] = [];
   paused: boolean = Boolean(this.getAttribute("paused"));
   ranFrameOne = false;
   static observedAttributes = ["paused"];
@@ -24,15 +24,15 @@ export default class Canvas extends P5MLElement {
       );
       p.angleMode(this.getAngleMode(p));
       p.background(getComputedStyle(this).background);
-      if (this.setup != null) {
-        this.setup(p);
-      }
+      this.setup.forEach((setupFn) => {
+        setupFn(p);
+      });
     };
     p.draw = () => {
       if (this.paused && this.ranFrameOne) return;
-      if (this.update != null) {
-        this.update(p);
-      }
+      this.update.forEach((updateFn) => {
+        updateFn(p);
+      });
       p.background(getComputedStyle(this).background);
       this.drawRecursive(p);
       this.ranFrameOne = true;
@@ -46,7 +46,11 @@ export default class Canvas extends P5MLElement {
   }
 
   getAngleMode(p: p5): "degrees" | "radians" {
-    switch (this.getAttribute("angle-mode").toLowerCase()) {
+    const angleModeAttr = this.getAttribute("angle-mode");
+    if (!angleModeAttr) {
+      return p.RADIANS;
+    }
+    switch (angleModeAttr.toLowerCase()) {
       case "deg":
       case "degrees":
       case "d":

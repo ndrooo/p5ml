@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>p5ml sandbox</title>
+        <link rel="stylesheet" href="/src/env.css" />
+        <style>
+            p5-canvas {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            p5-ellipse {
+                color: red;
+                background: rgba(255, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <article class="canvas-container" x-data="{ paused: false }" :id="$id">
+            <h2>Make your own!</h2>
+            <div class="tools">
+                <button x-on:click="paused = !paused">
+                    <div x-show="paused" data-lucide="play"></div>
+                    <div x-show="!paused" data-lucide="pause"></div>
+                </button>
+                <span>FPS: <span class="framerate">0</span></span>
+            </div>
+            <p5-canvas width="600" height="600" angle-mode="degrees">
+                <p5-translate x="200" y="200">
+                    <p5-rotate id="spinner" angle="0">
+                        <p5-ellipse w="30" h="200"></p5-ellipse>
+                    </p5-rotate>
+                </p5-translate>
+            </p5-canvas>
+        </article>
+        <script type="module" src="/src/p5ml.ts"></script>
+        <script type="module" src="/src/env.ts"></script>
+        <script type="module">
+            const canvas = document.getElementsByTagName("p5-canvas")[0];
+
+            canvas.update.push((p) => {
+                const spinner = document.getElementById("spinner");
+                const angle = Number(spinner.getAttribute("angle"));
+                spinner.setAttribute("angle", (angle + 1).toFixed(0));
+            });
+        </script>
+    </body>
+</html>
