@@ -13,6 +13,10 @@
                 color: red;
                 background: rgba(255, 0, 0, 0.1);
             }
+            p5-circle {
+                color: green;
+                background: blue;
+            }
         </style>
     </head>
     <body>
@@ -43,11 +47,15 @@
                         </p5-translate>
                     </spin-thing>
                 </p5-translate>
+                <seek-touch>
+                    <p5-circle d="20"></p5-circle>
+                </seek-touch>
             </p5-canvas>
         </article>
         <script type="module" src="/src/p5ml.ts"></script>
         <script type="module" src="/src/env.ts"></script>
         <script type="module" src="/custom/spin-thing.js"></script>
+        <script type="module" src="/custom/seek-touch.js"></script>
         <script type="module">
             const canvas = document.getElementsByTagName("p5-canvas")[0];
 
