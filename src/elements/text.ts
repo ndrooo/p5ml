@@ -10,6 +10,10 @@ export default class Text extends Draw2dElement {
     this.define();
   }
 
+  connectedCallback() {
+    this.style.display = "none";
+  }
+
   async draw(p: p5) {
     p.text(this.content, 0, 0);
   }
