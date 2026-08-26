@@ -24,7 +24,6 @@ class SpinThing extends HTMLElement {
         scale.setAttribute("x", (xflip ? -1 : 1).toString());
         scale.setAttribute("y", (yflip ? -1 : 1).toString());
         children.forEach((child) => {
-          // todo: copy
           scale.appendChild(child.cloneNode(true));
         });
         this.appendChild(translate);
