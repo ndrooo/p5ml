@@ -1,6 +1,4 @@
 class RecursiveRoot extends HTMLElement {
-  canvas = this.closest("p5-canvas");
-
   static observedAttributes = [];
 
   static {
