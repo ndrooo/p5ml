@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>p5ml sandbox</title>
+        <link rel="stylesheet" href="/src/env.css" />
+        <style>
+            p5-canvas {
+                background: none;
+            }
+
+            p5-image {
+                opacity: 0.1;
+            }
+
+            p5-circle {
+                color: white;
+                background: blue;
+            }
+
+            [point="middle_finger_tip"] p5-circle {
+                color: white;
+                background: green;
+            }
+
+            [point="thumb_tip"] p5-circle {
+                color: white;
+                background: red;
+            }
+
+            [point="ring_finger_tip"] p5-circle {
+                color: white;
+                background: rebeccapurple;
+            }
+
+            [point="pinky_finger_tip"] p5-circle {
+                color: white;
+                background: orange;
+            }
+        </style>
+        <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+    </head>
+    <body>
+        <article class="canvas-container" x-data="{ paused: false }" :id="$id">
+            <h2>Hand tracking</h2>
+            <div class="tools">
+                <button x-on:click="paused = !paused">
+                    <div x-show="paused" data-lucide="play"></div>
+                    <div x-show="!paused" data-lucide="pause"></div>
+                </button>
+                <span>FPS: <span class="framerate">0</span></span>
+            </div>
+            <p5-canvas
+                width="700"
+                height="600"
+                angle-mode="degrees"
+                :paused="paused"
+            >
+                <p5-image from-capture="capture"></p5-image>
+                <p5-capture id="capture">
+                    <ml5-hand point="index_finger_tip">
+                        <p5-circle d="40"></p5-circle>
+                    </ml5-hand>
+                    <ml5-hand point="thumb_tip">
+                        <p5-circle d="20"></p5-circle>
+                    </ml5-hand>
+                    <ml5-hand point="middle_finger_tip">
+                        <p5-circle d="20"></p5-circle>
+                    </ml5-hand>
+                    <ml5-hand point="ring_finger_tip">
+                        <p5-circle d="20"></p5-circle>
+                    </ml5-hand>
+                    <ml5-hand point="pinky_finger_tip">
+                        <p5-circle d="20"></p5-circle>
+                    </ml5-hand>
+                </p5-capture>
+            </p5-canvas>
+        </article>
+        <script type="module" src="/src/p5ml.ts"></script>
+        <script type="module" src="/src/env.ts"></script>
+        <script type="module" src="/custom/ml5-hand.js"></script>
+    </body>
+</html>
