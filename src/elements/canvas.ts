@@ -23,17 +23,24 @@ export default class Canvas extends P5MLElement {
         Number(this.getAttribute("height")),
       );
       p.angleMode(this.getAngleMode(p));
-      p.background(getComputedStyle(this).background);
+      let background = getComputedStyle(this).background;
+      if (background && background !== "none" && background !== "transparent") {
+        p.background(background);
+      }
       this.setup.forEach((setupFn) => {
         setupFn(p);
       });
+      this.readyRecursive(p);
     };
     p.draw = () => {
       if (this.paused && this.ranFrameOne) return;
+      let background = getComputedStyle(this).background;
+      if (background && background !== "none" && background !== "transparent") {
+        p.background(background);
+      }
       this.update.forEach((updateFn) => {
         updateFn(p);
       });
-      p.background(getComputedStyle(this).background);
       this.drawRecursive(p);
       this.ranFrameOne = true;
     };

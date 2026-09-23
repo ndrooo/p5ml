@@ -7,7 +7,6 @@ export default class Transform2dElement extends P5MLElement {
   }
 
   postDraw(p: p5): void {
-    this.drawRecursive(p);
     p.pop();
   }
 }
