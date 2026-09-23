@@ -1,4 +1,5 @@
 import "/src/elements/canvas.ts";
+import "/src/elements/capture.ts";
 import "/src/elements/rect.ts";
 import "/src/elements/circle.ts";
 import "/src/elements/ellipse.ts";
